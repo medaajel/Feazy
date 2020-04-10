@@ -12,33 +12,31 @@ var grammar = {
     {"name": "__$ebnf$1", "symbols": ["__$ebnf$1", "wschar"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "__", "symbols": ["__$ebnf$1"], "postprocess": function(d) {return null;}},
     {"name": "wschar", "symbols": [/[ \t\n\v\f]/], "postprocess": id},
-    {"name": "variable_declaration", "symbols": ["_", {"literal":"@"}, "declaration_identifier", "_"], "postprocess":  data => {
+    {"name": "declaration$string$1", "symbols": [{"literal":"n"}, {"literal":"e"}, {"literal":"w"}], "postprocess": function joiner(d) {return d.join('');}},
+    {"name": "declaration", "symbols": ["_", "declaration$string$1", "_", {"literal":"@"}, "identifier", "_"], "postprocess":  data => {
         return {
-            declaration_identifier:data[2],
-            declaration_variable_value:"null"
+            type:"declaration",
+            identifier:data[4],
+            value:"null"
             }
         }
         },
-    {"name": "variable_declaration", "symbols": ["_", {"literal":"@"}, "declaration_identifier", "_", {"literal":"="}, "_", "declaration_variable_value", "_"], "postprocess":  data => {
+    {"name": "declaration$string$2", "symbols": [{"literal":"n"}, {"literal":"e"}, {"literal":"w"}], "postprocess": function joiner(d) {return d.join('');}},
+    {"name": "declaration", "symbols": ["_", "declaration$string$2", "_", {"literal":"@"}, "identifier", "_", {"literal":"="}, "_", "value", "_"], "postprocess":  data => {
         return {
-            declaration_identifier:data[2],
-            declaration_variable_value:data[6]
+            type:"declaration",
+            identifier:data[4],
+            value:data[8]
             }
         }
         },
-    {"name": "variable_declaration", "symbols": ["_", {"literal":"@"}, "declaration_identifier", "_", {"literal":"="}, "_", "expression", "_"], "postprocess":  data => {
-        return {
-            declaration_identifier:data[2],
-            declaration_variable_value:data[6]
-            }
-        }
-        },
-    {"name": "declaration_identifier$ebnf$1", "symbols": [/[a-zA-Z0-9]/]},
-    {"name": "declaration_identifier$ebnf$1", "symbols": ["declaration_identifier$ebnf$1", /[a-zA-Z0-9]/], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "declaration_identifier", "symbols": ["declaration_identifier$ebnf$1"], "postprocess": data => data[0].join("")},
-    {"name": "declaration_variable_value$ebnf$1", "symbols": [/[a-zA-Z0-9]/]},
-    {"name": "declaration_variable_value$ebnf$1", "symbols": ["declaration_variable_value$ebnf$1", /[a-zA-Z0-9]/], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "declaration_variable_value", "symbols": ["declaration_variable_value$ebnf$1"], "postprocess": data => data[0].join("")},
+    {"name": "identifier$ebnf$1", "symbols": [/[a-zA-Z0-9]/]},
+    {"name": "identifier$ebnf$1", "symbols": ["identifier$ebnf$1", /[a-zA-Z0-9]/], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "identifier", "symbols": ["identifier$ebnf$1"], "postprocess": data => data[0].join("")},
+    {"name": "value", "symbols": ["string"]},
+    {"name": "value", "symbols": ["number"]},
+    {"name": "value", "symbols": ["expression"]},
+    {"name": "value", "symbols": ["bool"], "postprocess": id},
     {"name": "expression", "symbols": ["_", "AS", "_"], "postprocess": data => {return data[1]; }},
     {"name": "P", "symbols": [{"literal":"("}, "_", "AS", "_", {"literal":")"}], "postprocess": data => {return data[2]; }},
     {"name": "P", "symbols": ["N"], "postprocess": id},
@@ -75,20 +73,34 @@ var grammar = {
     {"name": "int$ebnf$1", "symbols": [/[0-9]/]},
     {"name": "int$ebnf$1", "symbols": ["int$ebnf$1", /[0-9]/], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "int", "symbols": ["int$ebnf$1"], "postprocess": data => {return data[0].join(""); }},
-    {"name": "assignment", "symbols": [{"literal":"@"}, "assignment_identifier", {"literal":"="}, "assignment_value"], "postprocess":  data => {
+    {"name": "assignment", "symbols": ["_", {"literal":"@"}, "identifier", "_", {"literal":"="}, "_", "value", "_"], "postprocess":  data => {
         return {
-            assignment_identifier:data[1],
-            assignment_value:data[5]
+            type:"assignment",
+            identifier:data[2],
+            value:data[6]
             }}
                 },
-    {"name": "assignment_value$ebnf$1", "symbols": [/[a-zA-Z0-9]/]},
-    {"name": "assignment_value$ebnf$1", "symbols": ["assignment_value$ebnf$1", /[a-zA-Z0-9]/], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "assignment_value", "symbols": ["assignment_value$ebnf$1"], "postprocess": data => data[0].join("")},
-    {"name": "assignment_identifier$ebnf$1", "symbols": [/[a-zA-Z0-9]/]},
-    {"name": "assignment_identifier$ebnf$1", "symbols": ["assignment_identifier$ebnf$1", /[a-zA-Z0-9]/], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "assignment_identifier", "symbols": ["assignment_identifier$ebnf$1"], "postprocess": data => data[0].join("")},
-    {"name": "program", "symbols": ["variable_declaration"]},
-    {"name": "program", "symbols": ["expression"]}
+    {"name": "value", "symbols": ["number"]},
+    {"name": "value", "symbols": ["string"]},
+    {"name": "value", "symbols": ["expression"]},
+    {"name": "value", "symbols": ["bool"], "postprocess": id},
+    {"name": "identifier$ebnf$1", "symbols": [/[a-zA-Z0-9]/]},
+    {"name": "identifier$ebnf$1", "symbols": ["identifier$ebnf$1", /[a-zA-Z0-9]/], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "identifier", "symbols": ["identifier$ebnf$1"], "postprocess": data => data[0].join("")},
+    {"name": "string", "symbols": [{"literal":"\""}, "characters", {"literal":"\""}], "postprocess": 
+        (data) => data[1]
+        },
+    {"name": "characters", "symbols": ["character"], "postprocess": id},
+    {"name": "characters", "symbols": ["character", "characters"], "postprocess": (data) => data[0] + data[1]},
+    {"name": "character", "symbols": [/[^/"]/], "postprocess": id},
+    {"name": "number", "symbols": ["expression"]},
+    {"name": "bool$string$1", "symbols": [{"literal":"t"}, {"literal":"r"}, {"literal":"u"}, {"literal":"e"}], "postprocess": function joiner(d) {return d.join('');}},
+    {"name": "bool", "symbols": ["bool$string$1"], "postprocess": data => "#" + data[0]},
+    {"name": "bool$string$2", "symbols": [{"literal":"f"}, {"literal":"a"}, {"literal":"l"}, {"literal":"s"}, {"literal":"e"}], "postprocess": function joiner(d) {return d.join('');}},
+    {"name": "bool", "symbols": ["bool$string$2"], "postprocess": data => "#" + data[0]},
+    {"name": "program", "symbols": ["declaration"]},
+    {"name": "program", "symbols": ["expression"]},
+    {"name": "program", "symbols": ["assignment"]}
 ]
   , ParserStart: "program"
 }

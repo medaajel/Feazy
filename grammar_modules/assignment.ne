@@ -1,10 +1,14 @@
-assignment -> "@" assignment_identifier "=" assignment_value 
+assignment -> _ "@" identifier _ "=" _ value _
          {% data => {
             return {
-                assignment_identifier:data[1],
-                assignment_value:data[5]
+                type:"assignment",
+                identifier:data[2],
+                value:data[6]
                 }}
         %}
 
-assignment_value -> [a-zA-Z0-9]:+ {% data => data[0].join("") %}
-assignment_identifier -> [a-zA-Z0-9]:+ {% data => data[0].join("") %}
+value -> number 
+                | string 
+                | expression
+                | bool {% id %}
+identifier -> [a-zA-Z0-9]:+ {% data => data[0].join("") %}

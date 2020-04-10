@@ -1,28 +1,26 @@
 
-variable_declaration 
-    -> _ "@" declaration_identifier _ 
+declaration 
+    -> _ "new" _ "@" identifier _ 
          {% data => {
     return {
-        declaration_identifier:data[2],
-        declaration_variable_value:"null"
+        type:"declaration",
+        identifier:data[4],
+        value:"null"
         }
     }
     %}
-    |_ "@" declaration_identifier _ "=" _ declaration_variable_value _
+    | _ "new" _ "@" identifier _ "=" _ value _
      {% data => {
     return {
-        declaration_identifier:data[2],
-        declaration_variable_value:data[6]
+        type:"declaration",
+        identifier:data[4],
+        value:data[8]
         }
     }
     %}
-    |_ "@" declaration_identifier _ "=" _ expression _
-     {% data => {
-    return {
-        declaration_identifier:data[2],
-        declaration_variable_value:data[6]
-        }
-    }
-    %}
-declaration_identifier -> [a-zA-Z0-9]:+ {% data => data[0].join("") %}
-declaration_variable_value -> [a-zA-Z0-9]:+ {% data => data[0].join("") %}
+
+identifier -> [a-zA-Z0-9]:+ {% data => data[0].join("") %}
+value -> string
+    | number
+    | expression
+    | bool {% id %}
