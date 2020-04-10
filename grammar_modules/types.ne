@@ -1,6 +1,6 @@
 string -> "\"" characters "\""
     {%
-    (data) => data[1]
+    (data) => ("\"" + data[1] + "\"").toString()
     %}
 
 characters
@@ -13,5 +13,5 @@ character -> [^/"] {% id %}
 number -> expression
 
 bool
-    -> "true" {% data => "#" + data[0] %}
-    | "false" {% data => "#" + data[0] %}
+    -> "true" {% data => "b#" + data[0] %}
+    | "false" {% data => "b#" + data[0] %}

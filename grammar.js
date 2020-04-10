@@ -88,19 +88,40 @@ var grammar = {
     {"name": "identifier$ebnf$1", "symbols": ["identifier$ebnf$1", /[a-zA-Z0-9]/], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "identifier", "symbols": ["identifier$ebnf$1"], "postprocess": data => data[0].join("")},
     {"name": "string", "symbols": [{"literal":"\""}, "characters", {"literal":"\""}], "postprocess": 
-        (data) => data[1]
+        (data) => ("\"" + data[1] + "\"").toString()
         },
     {"name": "characters", "symbols": ["character"], "postprocess": id},
     {"name": "characters", "symbols": ["character", "characters"], "postprocess": (data) => data[0] + data[1]},
     {"name": "character", "symbols": [/[^/"]/], "postprocess": id},
     {"name": "number", "symbols": ["expression"]},
     {"name": "bool$string$1", "symbols": [{"literal":"t"}, {"literal":"r"}, {"literal":"u"}, {"literal":"e"}], "postprocess": function joiner(d) {return d.join('');}},
-    {"name": "bool", "symbols": ["bool$string$1"], "postprocess": data => "#" + data[0]},
+    {"name": "bool", "symbols": ["bool$string$1"], "postprocess": data => "b#" + data[0]},
     {"name": "bool$string$2", "symbols": [{"literal":"f"}, {"literal":"a"}, {"literal":"l"}, {"literal":"s"}, {"literal":"e"}], "postprocess": function joiner(d) {return d.join('');}},
-    {"name": "bool", "symbols": ["bool$string$2"], "postprocess": data => "#" + data[0]},
+    {"name": "bool", "symbols": ["bool$string$2"], "postprocess": data => "b#" + data[0]},
+    {"name": "statement$ebnf$1", "symbols": []},
+    {"name": "statement$ebnf$1", "symbols": ["statement$ebnf$1", "instruction"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "statement", "symbols": ["_", "tagname", "_", "class", "_", {"literal":"{"}, "statement$ebnf$1", {"literal":"}"}], "postprocess": 
+        data => {
+            return {
+                tagname:data[1],
+                class:data[3],
+                instructions:data[6]
+            }
+        }
+        },
+    {"name": "tagname", "symbols": ["characters"], "postprocess": id},
+    {"name": "class", "symbols": [{"literal":"."}, "characters"], "postprocess": data => (data[0] + data[1]).toString()},
+    {"name": "instruction", "symbols": ["_", "attribute", "_", {"literal":"="}, "_", "value", "_"], "postprocess": 
+        data => ("H(" + data[1] + "=" + data[5] + ")").toString().split(" ").join("")
+        },
+    {"name": "instruction", "symbols": ["_", "attribute", "_", {"literal":":"}, "_", "value", "_"], "postprocess": 
+        data => ("C(" + data[1] + ":" + data[5] + ")").toString().split(" ").join("")
+        },
+    {"name": "attribute", "symbols": ["characters"], "postprocess": id},
     {"name": "program", "symbols": ["declaration"]},
     {"name": "program", "symbols": ["expression"]},
-    {"name": "program", "symbols": ["assignment"]}
+    {"name": "program", "symbols": ["assignment"]},
+    {"name": "program", "symbols": ["statement"]}
 ]
   , ParserStart: "program"
 }
