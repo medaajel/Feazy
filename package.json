@@ -9,6 +9,8 @@
   "author": "Mouhammed Ajel & Sarah Ben Yahia",
   "license": "ISC",
   "dependencies": {
+    "bluebird": "^3.7.2",
+    "line-reader": "^0.4.0",
     "moo": "^0.5.1",
     "nearley": "^2.19.1"
   }
