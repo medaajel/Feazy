@@ -1,26 +1,30 @@
+string -> "\"" characters "\""
+    {%
+    (data) => ("\"" + data[1] + "\"").toString()
+    %}
 
-declaration 
-    -> _ "new" _ "@" identifier _ 
-         {% data => {
-    return {
-        type:"declaration",
-        identifier:data[4],
-        value:"null"
-        }
-    }
-    %}
-    | _ "new" _ "@" identifier _ "=" _ value _
-     {% data => {
-    return {
-        type:"declaration",
-        identifier:data[4],
-        value:data[8]
-        }
-    }
-    %}
+characters
+    -> character {% id %}
+    | character characters 
+    {% (data) => data[0] + data[1]%}
+
+character -> [^/";] {% id %}
+
+float ->
+      int "." int   {% data => {return parseFloat(data[0] + data[1] + data[2])} %}
+	| int           {% data => {return parseInt(data[0])} %}
+
+int -> [0-9]:+        {% data => {return data[0].join(""); } %}
+
+bool
+    -> "true" {% data => "b#" + data[0] %}
+    | "false" {% data => "b#" + data[0] %}
+
+value -> string {% id %}
+    | characters {% id %}
+    | float {% id %}
+    | int {% id %}
+    | bool {% id %}
+    | expression {% id %}
 
 identifier -> [a-zA-Z0-9]:+ {% data => data[0].join("") %}
-value -> string
-    | number
-    | expression
-    | bool {% id %}

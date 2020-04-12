@@ -1,24 +1,39 @@
-statement -> _ tagname __ class _ "{" _ instructions:* _ statement:* _ "}" _
+statement -> tagname __ class _ "{" _ instructions:* _ statement:* _ "}" _ ";" _
             {%
-            data => {
+            d => {
                 return {
-                    tagname: data[1],
-                    class: data[3],
-                    instructions: data[7].join("")
+                    type:"tag",
+                    tagname: d[0],
+                    class: d[2],
+                    instructions: d[6],
+                    sub_tags: d[8]
+                }
+            }
+            %}
+        | tagname _ "{" _ instructions:* _ statement:* _ "}" _ ";"
+            {%
+            d => {
+                return {
+                    type:"tag",
+                    tagname: d[0],
+                    instructions: d[4],
+                    sub_tags: d[6]
                 }
             }
             %}
 
-instructions -> _ attribut _ [=|:] _ value _
+instructions -> attribut _ [=|:] _ value_with_unity _ ";" _
             {% 
-            data => { switch(data[3]){
-                case "=": return(("html(" + data[1] + "=" + data[5] + ")").toString())
-                case ":": return(("css(" + data[1] + ":" + data[5] + ")").toString())
+            d => { switch(d[2]){
+                case "=": return(("html(" + d[0] + "=" + d[4] + ")").toString())
+                case ":": return(("css(" + d[0] + ":" + d[4] + ")").toString())
             }
             }
             %}
 
-tagname ->  [#] [a-zA-Z0-9_]:+ {% data => data[0] + data[1].join("") %}
-attribut -> [a-zA-Z0-9_]:+ {% data => data[0].join("") %}
-class -> [.] [a-zA-Z0-9_]:+ {% data => data[0] + data[1].join("") %}
-value -> [a-zA-Z0-9_]:+ {% data => data[0].join("") %}
+tagname ->  [$] [a-zA-Z0-9_]:+ {% d => d[0] + d[1].join("") %}
+attribut -> [a-zA-Z0-9_-]:+ {% d => d[0].join("") %}
+class -> [.] [a-zA-Z0-9_]:+ {% d => d[0] + d[1].join("") %}
+value_with_unity -> [#A-Za-z0-9_-]:+  {% d => d[0].join("") %}
+                | [0-9]:+  _ ("px"|"rem"|"pt"|"%") {% d => d[0].join("") + d[2] %}
+                | string

@@ -1,7 +1,7 @@
 new @a;
 new @b = 1;
 @a = 2;
-$body .body{ $body .body{ font-family: poppins size = 10 px $body .body{ font-family: poppins size = 10 px};}; font-family: poppins size = 10 px};
+$body .body{ font-family: poppins size = 10 px};
 $b .b{$h1 .h1 { font-family: poppins size = 10 px};$h2 .h2 { color= #123123 size = 10 px $h3 .h3 { color= #123123 size = 10 px  }; };};
  @a = 3;
  @b = 5; 

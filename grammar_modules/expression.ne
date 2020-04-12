@@ -29,9 +29,5 @@ N -> float          {% id %}
     | "sqrt" _ P    {% data => {return Math.sqrt(data[2]); } %}
     | "ln" _ P      {% data => {return Math.log(data[2]); }  %}
 
-float ->
-      int "." int   {% data => {return parseFloat(data[0] + data[1] + data[2])} %}
-	| int           {% data => {return parseInt(data[0])} %}
 
-int -> [0-9]:+        {% data => {return data[0].join(""); } %}
 
