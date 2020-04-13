@@ -1,3 +1,8 @@
-new @a = 11;
-new @b;
-new @c = 10;
+new @a;
+new @b = 1;
+@a = 2;
+$body .body{font-family: poppinssize = 10 px};
+$b .b{$h1 .h1 {font-family: poppinssize = 10 px};$h2 .h2 {color= #123123size = 10 px$h3 .h3 {color= #123123size = 10 px};};};
+@a = 3;
+@b = 5;
+ 
