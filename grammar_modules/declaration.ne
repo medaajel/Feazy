@@ -1,16 +1,16 @@
-declaration -> "new" __ "@" identifier _ "=" _ value _ ";"
+declaration -> "new" __ identifier _ "=" _ value _ ";"
             {%
             d => ({
                 type:"declaration",
-                identifier:d[3],
-                value:d[7]
+                identifier:d[2],
+                value:d[6]
             })
             %}
-            | "new" __ "@" identifier _ ";"
+            | "new" __ identifier _ ";"
             {%
             d => ({
                 type:"declaration",
-                identifier:d[3],
+                identifier:d[2],
                 value:null
             })
             %}

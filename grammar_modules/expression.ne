@@ -1,4 +1,28 @@
 expression -> _ AS _ {% data => {return data[1]; } %}
+        | element _ comparison_operator _ element
+        {%
+            d => ({
+                type: "comparison",
+                operator: d[2],
+                left: d[0],
+                right: d[4]
+            })
+        %}
+
+comparison_operator
+    -> ">"   {% id %}
+    |  ">="  {% id %}
+    |  "<"   {% id %}
+    |  "<="  {% id %}
+    |  "=="  {% id %}
+
+element
+    -> int {% data => {return parseInt(data[0])} %}
+    | float {% data => {return parseFloat(data[0])} %}
+    |  identifier {% id %}
+    |  expression      {% id %}
+    |  string       {% id %}
+    |  bool     {% id %}
 
 P -> "(" _ AS _ ")" {% data => {return data[2]; } %}
     | N             {% id %}

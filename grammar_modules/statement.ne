@@ -1,23 +1,26 @@
-statement -> tagname __ class _ "{" _ instructions:* _ statement:* _ "}" _ ";" _
+
+@include "./tagname.ne"
+
+statement -> "$" tagname __ class _ "{" _ instructions:* _ statement:* _ "}" _ ";" _
             {%
             d => {
                 return {
                     type:"tag",
-                    tagname: d[0],
-                    class: d[2],
-                    instructions: d[6],
-                    sub_tags: d[8]
+                    tagname: d[1],
+                    class: d[3],
+                    instructions: d[7],
+                    sub_tags: d[9]
                 }
             }
             %}
-        | tagname _ "{" _ instructions:* _ statement:* _ "}" _ ";"
+        | "$" tagname _ "{" _ instructions:* _ statement:* _ "}" _ ";"
             {%
             d => {
                 return {
                     type:"tag",
-                    tagname: d[0],
-                    instructions: d[4],
-                    sub_tags: d[6]
+                    tagname: d[1],
+                    instructions: d[5],
+                    sub_tags: d[7]
                 }
             }
             %}
@@ -31,7 +34,6 @@ instructions -> attribut _ [=|:] _ value_with_unity _ ";" _
             }
             %}
 
-tagname ->  [$] [a-zA-Z0-9_]:+ {% d => d[0] + d[1].join("") %}
 attribut -> [a-zA-Z0-9_-]:+ {% d => d[0].join("") %}
 class -> [.] [a-zA-Z0-9_]:+ {% d => d[0] + d[1].join("") %}
 value_with_unity -> [#A-Za-z0-9_-]:+  {% d => d[0].join("") %}

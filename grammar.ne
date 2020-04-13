@@ -4,11 +4,20 @@
 @include "./grammar_modules/declaration.ne"
 @include "./grammar_modules/statement.ne"
 @include "./grammar_modules/assignment.ne"
+@include "./grammar_modules/include.ne"
+@include "./grammar_modules/use.ne"
+@include "./grammar_modules/comment.ne"
+@include "./grammar_modules/php_and_js.ne"
 
 program
-    -> declaration
-    | assignment
-    | statement
+    -> declaration {% id %}
+    | assignment {% id %}
+    | statement {% id %}
+    | include {% id %}
+    | use {% id %}
+    | expression {% id %}
+    | comment {% id %}
+    | js_and_php {% id %}
 
 _ -> [ \r\t\n,]:* {% d => null %}
 __ -> [ \r\t\n,]:+  {% d => null %}
