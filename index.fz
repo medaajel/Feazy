@@ -1,24 +1,32 @@
-    new @a;
+new @a;
 new @b = 1;
-   @a = 2;
-$body .body{
-    font-family: poppins
-    size = 10 px
-};
+@a = 3;
 
+\\ here is body
+
+$body .body{
+    font-family: poppins;
+    size = @a px;
+};
+#js
+    alert("Message");
+#js
+          \\here is b
+
+@b = 5;
 $b .b{
 $h1 .h1 {
-    font-family: poppins
-    size = 10 px
+    font-family: poppins;
+    size = @b px;
 };
-$h2 .h2 {
-    color= #123123
-    size = 10 px
+$h1 .h0 {
+    color= #123123;
+    size = @a + @b px;
 
-    $h3 .h3 {
-    color= #123123
-    size = 10 px
+    $div .dic {
+    color= #123123;
+    size = 10 px;
     
     };  
 };
-}; @a = 3; @b = 5; 
+};

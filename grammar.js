@@ -26,8 +26,9 @@ var grammar = {
     {"name": "value", "symbols": ["int"], "postprocess": id},
     {"name": "value", "symbols": ["bool"], "postprocess": id},
     {"name": "value", "symbols": ["expression"], "postprocess": id},
-    {"name": "identifier$ebnf$1", "symbols": [/[a-zA-Z0-9]/]},
-    {"name": "identifier$ebnf$1", "symbols": ["identifier$ebnf$1", /[a-zA-Z0-9]/], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "value", "symbols": ["identifier"], "postprocess": id},
+    {"name": "identifier$ebnf$1", "symbols": [/[a-zA-Z0-9_]/]},
+    {"name": "identifier$ebnf$1", "symbols": ["identifier$ebnf$1", /[a-zA-Z0-9_]/], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "identifier", "symbols": [{"literal":"@"}, "identifier$ebnf$1"], "postprocess": data => data[0] + data[1].join("")},
     {"name": "expression", "symbols": ["_", "AS", "_"], "postprocess": data => {return data[1]; }},
     {"name": "expression", "symbols": ["element", "_", "comparison_operator", "_", "element"], "postprocess": 
@@ -358,8 +359,8 @@ var grammar = {
         },
     {"name": "instructions", "symbols": ["attribut", "_", /[=|:]/, "_", "value_with_unity", "_", {"literal":";"}, "_"], "postprocess":  
         d => { switch(d[2]){
-            case "=": return(("html(" + d[0] + "=" + d[4] + ")").toString())
-            case ":": return(("css(" + d[0] + ":" + d[4] + ")").toString())
+            case "=": return(( d[0] + "=" + d[4]).toString())
+            case ":": return((d[0] + ":" + d[4]).toString())
         }
         }
         },
@@ -368,9 +369,9 @@ var grammar = {
     {"name": "attribut", "symbols": ["attribut$ebnf$1"], "postprocess": d => d[0].join("")},
     {"name": "class$ebnf$1", "symbols": [/[a-zA-Z0-9_]/]},
     {"name": "class$ebnf$1", "symbols": ["class$ebnf$1", /[a-zA-Z0-9_]/], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "class", "symbols": [/[.]/, "class$ebnf$1"], "postprocess": d => d[0] + d[1].join("")},
-    {"name": "value_with_unity$ebnf$1", "symbols": [/[#A-Za-z0-9_-]/]},
-    {"name": "value_with_unity$ebnf$1", "symbols": ["value_with_unity$ebnf$1", /[#A-Za-z0-9_-]/], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "class", "symbols": [/[.]/, "class$ebnf$1"], "postprocess": d => d[1].join("")},
+    {"name": "value_with_unity$ebnf$1", "symbols": [/[@#A-Za-z0-9_-]/]},
+    {"name": "value_with_unity$ebnf$1", "symbols": ["value_with_unity$ebnf$1", /[@#A-Za-z0-9_-]/], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "value_with_unity", "symbols": ["value_with_unity$ebnf$1"], "postprocess": d => d[0].join("")},
     {"name": "value_with_unity$ebnf$2", "symbols": [/[0-9]/]},
     {"name": "value_with_unity$ebnf$2", "symbols": ["value_with_unity$ebnf$2", /[0-9]/], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
@@ -382,7 +383,15 @@ var grammar = {
     {"name": "value_with_unity$subexpression$1", "symbols": ["value_with_unity$subexpression$1$string$3"]},
     {"name": "value_with_unity$subexpression$1", "symbols": [{"literal":"%"}]},
     {"name": "value_with_unity", "symbols": ["value_with_unity$ebnf$2", "_", "value_with_unity$subexpression$1"], "postprocess": d => d[0].join("") + d[2]},
-    {"name": "value_with_unity", "symbols": ["string"]},
+    {"name": "value_with_unity", "symbols": ["string"], "postprocess": id},
+    {"name": "value_with_unity$subexpression$2$string$1", "symbols": [{"literal":"p"}, {"literal":"x"}], "postprocess": function joiner(d) {return d.join('');}},
+    {"name": "value_with_unity$subexpression$2", "symbols": ["value_with_unity$subexpression$2$string$1"]},
+    {"name": "value_with_unity$subexpression$2$string$2", "symbols": [{"literal":"r"}, {"literal":"e"}, {"literal":"m"}], "postprocess": function joiner(d) {return d.join('');}},
+    {"name": "value_with_unity$subexpression$2", "symbols": ["value_with_unity$subexpression$2$string$2"]},
+    {"name": "value_with_unity$subexpression$2$string$3", "symbols": [{"literal":"p"}, {"literal":"t"}], "postprocess": function joiner(d) {return d.join('');}},
+    {"name": "value_with_unity$subexpression$2", "symbols": ["value_with_unity$subexpression$2$string$3"]},
+    {"name": "value_with_unity$subexpression$2", "symbols": [{"literal":"%"}]},
+    {"name": "value_with_unity", "symbols": ["expression", "_", "value_with_unity$subexpression$2"], "postprocess": d => d[0] + d[2]},
     {"name": "assignment", "symbols": ["identifier", "_", {"literal":"="}, "_", "value", "_", {"literal":";"}], "postprocess": 
         d => ({
             type:"assignment",
@@ -408,28 +417,31 @@ var grammar = {
         },
     {"name": "link", "symbols": ["string"], "postprocess": id},
     {"name": "link", "symbols": ["identifier"], "postprocess": id},
-    {"name": "comment", "symbols": [{"literal":"\\"}, "_", "characters"], "postprocess":  d => { 
+    {"name": "comment$string$1", "symbols": [{"literal":"\\"}, {"literal":"\\"}], "postprocess": function joiner(d) {return d.join('');}},
+    {"name": "comment", "symbols": ["comment$string$1", "_", "characters"], "postprocess":  d => { 
             return{
                 type:"comment",
                 text:d[2]
             }
         }
         },
-    {"name": "js_and_php$string$1", "symbols": [{"literal":"j"}, {"literal":"s"}], "postprocess": function joiner(d) {return d.join('');}},
-    {"name": "js_and_php", "symbols": [{"literal":"#"}, "js_and_php$string$1", "_", {"literal":"{"}, "_", "special_characters", "_", {"literal":"}"}, {"literal":";"}], "postprocess": 
+    {"name": "js_and_php$string$1", "symbols": [{"literal":"#"}, {"literal":"j"}, {"literal":"s"}], "postprocess": function joiner(d) {return d.join('');}},
+    {"name": "js_and_php$string$2", "symbols": [{"literal":"#"}, {"literal":"j"}, {"literal":"s"}], "postprocess": function joiner(d) {return d.join('');}},
+    {"name": "js_and_php", "symbols": ["js_and_php$string$1", "_", "special_characters", "_", "js_and_php$string$2"], "postprocess": 
         d => {
            return{
-               type:"js code",
-               code:d[5]
+               type:"js",
+               code:d[2]
            } 
         }
         },
-    {"name": "js_and_php$string$2", "symbols": [{"literal":"p"}, {"literal":"h"}, {"literal":"p"}], "postprocess": function joiner(d) {return d.join('');}},
-    {"name": "js_and_php", "symbols": [{"literal":"#"}, "js_and_php$string$2", "_", {"literal":"{"}, "_", "special_characters", "_", {"literal":"}"}, {"literal":";"}], "postprocess": 
+    {"name": "js_and_php$string$3", "symbols": [{"literal":"#"}, {"literal":"p"}, {"literal":"h"}, {"literal":"p"}], "postprocess": function joiner(d) {return d.join('');}},
+    {"name": "js_and_php$string$4", "symbols": [{"literal":"#"}, {"literal":"p"}, {"literal":"h"}, {"literal":"p"}], "postprocess": function joiner(d) {return d.join('');}},
+    {"name": "js_and_php", "symbols": ["js_and_php$string$3", "_", "special_characters", "_", "js_and_php$string$4"], "postprocess": 
         d => {
            return{
-               type:"js code",
-               code:d[5]
+               type:"php",
+               code:d[2]
            } 
         }
         },

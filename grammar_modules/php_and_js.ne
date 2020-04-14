@@ -1,18 +1,18 @@
-js_and_php -> "#" "js" _ "{" _ special_characters _ "}" ";"
+js_and_php -> "#js"  _ special_characters _ "#js"
             {%
             d => {
                return{
-                   type:"js code",
-                   code:d[5]
+                   type:"js",
+                   code:d[2]
                } 
             }
             %}
-        | "#" "php" _ "{" _ special_characters _ "}" ";"    
+        | "#php" _ special_characters _ "#php"
             {%
             d => {
                return{
-                   type:"js code",
-                   code:d[5]
+                   type:"php",
+                   code:d[2]
                } 
             }
             %}

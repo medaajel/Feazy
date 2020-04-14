@@ -26,5 +26,6 @@ value -> string {% id %}
     | int {% id %}
     | bool {% id %}
     | expression {% id %}
+    | identifier {% id %}
 
-identifier -> "@" [a-zA-Z0-9]:+ {% data => data[0] + data[1].join("") %}
+identifier -> "@" [a-zA-Z0-9_]:+ {% data => data[0] + data[1].join("") %}

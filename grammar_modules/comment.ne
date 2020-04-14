@@ -1,4 +1,4 @@
-comment -> "\\" _ characters
+comment -> "\\\\" _ characters
     {% d => { 
         return{
             type:"comment",
