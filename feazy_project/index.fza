@@ -1,0 +1,5 @@
+@a = 1;
+@b = 2;
+$body .body{bg-color:#123123;$h1 .h1{content = "Here is h1 bitches!!";size=@a + @b px;};};
+@link = "about.fz";
+@include(@link);

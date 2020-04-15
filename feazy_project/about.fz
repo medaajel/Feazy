@@ -1,0 +1,8 @@
+@c = 5;
+$div .div{
+    width:@c px;
+    height = 100%;
+};
+$h1 .h1{
+    
+};

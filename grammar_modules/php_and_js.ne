@@ -16,5 +16,13 @@ js_and_php -> "#js"  _ special_characters _ "#js"
                } 
             }
             %}
-
+        | "#html" _ special_characters _ "#html"
+            {%
+            d => {
+               return{
+                   type:"html",
+                   code:d[2]
+               } 
+            }
+            %}
 special_characters -> ( character | [/";] ):+ {% d => d[0].join("") %}

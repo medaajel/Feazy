@@ -1,6 +1,6 @@
 string -> "\"" characters "\""
     {%
-    (data) => ("\"" + data[1] + "\"").toString()
+    (data) => (data[1]).toString()
     %}
 
 characters

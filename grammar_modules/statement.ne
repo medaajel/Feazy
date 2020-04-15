@@ -13,17 +13,6 @@ statement -> "$" tagname __ class _ "{" _ instructions:* _ statement:* _ "}" _ "
                 }
             }
             %}
-        | "$" tagname _ "{" _ instructions:* _ statement:* _ "}" _ ";"
-            {%
-            d => {
-                return {
-                    type:"tag",
-                    tagname: d[1],
-                    instructions: d[5],
-                    sub_tags: d[7]
-                }
-            }
-            %}
 
 instructions -> attribut _ [=|:] _ value_with_unity _ ";" _
             {% 
@@ -36,7 +25,8 @@ instructions -> attribut _ [=|:] _ value_with_unity _ ";" _
 
 attribut -> [a-zA-Z0-9_-]:+ {% d => d[0].join("") %}
 class -> [.] [a-zA-Z0-9_]:+ {% d => d[1].join("") %}
-value_with_unity -> [@#A-Za-z0-9_-]:+  {% d => d[0].join("") %}
+value_with_unity -> identifier _  ("px"|"rem"|"pt"|"%") {% d => d[0] + d[2]%}
                 | [0-9]:+  _ ("px"|"rem"|"pt"|"%") {% d => d[0].join("") + d[2] %}
                 | string {% id %}
                 | expression  _ ("px"|"rem"|"pt"|"%") {% d => d[0] + d[2] %}
+                | "#" [0-9A-Fa-f]:+ {% d => d[0] + d[1].join("") %}

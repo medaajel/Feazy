@@ -1,9 +1,0 @@
-new @a;
-new @b = 1;
-@a = 3;
-\\ here is body
-$body .body{font-family: poppins;size = @a px;};
-#js alert("Message"); #js
-\\here is b
-@b = 5;
-$b .b{$h1 .h1 {font-family: poppins;size = @b px;};$h1 .h0 {color= #123123;size = @a + @b px;$div .dic {color= #123123;size = 10 px;};};};

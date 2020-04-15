@@ -1,7 +1,6 @@
 
 @include "./grammar_modules/variable.ne"
 @include "./grammar_modules/expression.ne"
-@include "./grammar_modules/declaration.ne"
 @include "./grammar_modules/statement.ne"
 @include "./grammar_modules/assignment.ne"
 @include "./grammar_modules/include.ne"
@@ -10,8 +9,7 @@
 @include "./grammar_modules/php_and_js.ne"
 
 program
-    -> declaration {% id %}
-    | assignment {% id %}
+    -> assignment {% id %}
     | statement {% id %}
     | include {% id %}
     | use {% id %}

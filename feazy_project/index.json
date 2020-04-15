@@ -1,0 +1,24 @@
+{
+ "type": "tag",
+ "tagname": "body",
+ "class": "body",
+ "instructions": [
+  "bg-color:#123123"
+ ],
+ "sub_tags": [
+  {
+   "type": "tag",
+   "tagname": "h1",
+   "class": "h1",
+   "instructions": [
+    "content=Here is h1 bitches!!",
+    "size=3px"
+   ],
+   "sub_tags": []
+  }
+ ]
+}
+{
+ "type": "include",
+ "link": "about.fz"
+}
