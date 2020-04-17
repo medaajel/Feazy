@@ -1,2 +1,4 @@
-$body .body{bg-color:#123123;$h1 .h1{content = "Here is h1 bitches!!";size=1 + 2 px;};};
+$head{$title { content="Feazy first test"; };$meta { charset="UTF-8"; };};
+#css h1 { size: 100 px; } #css
+$body .body{background-color: #FFFFFF;color= "red";$h1 .h1{content= "H1 is here";color:#000000;};};
 @include("about.fz");

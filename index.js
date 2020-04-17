@@ -1,5 +1,5 @@
-var parse = require('./parse')
-const analyse = require("./analyse.js")
+var parse = require('./parser')
+const optimizer = require("./optimizer.js")
 const line_reader = require('line-reader')
 var file_system = require('fs').promises
 const program = require('commander')
@@ -26,7 +26,7 @@ program
             }else{
                 for (var i=0; i<feazy_files.length; i++){
                     var feazy_file = args.in + "/" + feazy_files[i]
-                    await analyse.prepare(feazy_file).then(async() => {
+                    await optimizer.optimize(feazy_file, args.in).then(async() => {
                     await parse.parse(feazy_file,args.in)
                     })
                 }
@@ -37,9 +37,6 @@ program
 program.parse(process.argv);
 
 // NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOTTTTTTTTTTTTTTEEEEEEEEEEEEEEEEEEE::::
-// TITLE, META-CHARSET WELLKOOL
-// CSS EXTERNAL FILES GENERATION 
-// USING
 // TEMPLATING
 // LIVE TRANSPALING
 // LIVE TESTING (IF POSSIBLE)

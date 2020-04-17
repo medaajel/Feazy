@@ -6,5 +6,5 @@ include -> "@include(" link ")" _ ";"
         })
         %}
 
-link -> characters {% id %}
+link -> string {% id %}
     | identifier {% id %}

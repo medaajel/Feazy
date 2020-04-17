@@ -25,4 +25,13 @@ js_and_php -> "#js"  _ special_characters _ "#js"
                } 
             }
             %}
+        | "#css" _ special_characters _ "#css"
+            {%
+            d => {
+               return{
+                   type:"css",
+                   code:d[2]
+               } 
+            }
+            %}
 special_characters -> ( character | [/";] ):+ {% d => d[0].join("") %}

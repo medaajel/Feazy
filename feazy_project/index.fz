@@ -1,12 +1,20 @@
-@a = 1;
-@b = 2;
-$body .body{
-    bg-color:#123123;
-    $h1 .h1{
-        content = "Here is h1 bitches!!";
-        size=@a + @b px;
-    };
-
+@use("strings.fz");
+$head{
+$title { content="Feazy first test"; };
+$meta { charset="UTF-8"; };
 };
-@link = "about.fz";
-@include(@link);
+#css
+h1 {
+    size: 100 px;
+}
+#css
+$body .body{
+background-color: #FFFFFF;
+color= "red";
+$h1 .h1{
+content=@desc;
+color:#000000;
+};
+};
+
+@include("about.fz");

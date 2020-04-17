@@ -48,7 +48,6 @@ tagname ->  "a" {% id %}
         | "frame" {% id %}
         | "frameset" {% id %}
         | "h1" {% id %}
-        | "head" {% id %}
         | "header" {% id %}
         | "hgroup" {% id %}
         | "hr" {% id %}

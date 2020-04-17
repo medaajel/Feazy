@@ -1,9 +1,33 @@
 {
+ "type": "head",
+ "sub_tags": [
+  {
+   "type": "head_tag",
+   "tagname": "title",
+   "instructions": [
+    "content=Feazy first test"
+   ]
+  },
+  {
+   "type": "head_tag",
+   "tagname": "meta",
+   "instructions": [
+    "charset=UTF-8"
+   ]
+  }
+ ]
+}
+{
+ "type": "css",
+ "code": "h1 { size: 100 px; } "
+}
+{
  "type": "tag",
  "tagname": "body",
  "class": "body",
  "instructions": [
-  "bg-color:#123123"
+  "background-color:#FFFFFF",
+  "color=red"
  ],
  "sub_tags": [
   {
@@ -11,8 +35,8 @@
    "tagname": "h1",
    "class": "h1",
    "instructions": [
-    "content=Here is h1 bitches!!",
-    "size=3px"
+    "content=H1 is here",
+    "color:#000000"
    ],
    "sub_tags": []
   }
