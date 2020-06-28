@@ -17,7 +17,7 @@ Feazy language has their own context-free grammar combined with many production 
 ### Variables
 With Feazy, you havn't to declare variable with specific type and use it then! All you need to do is assign to variable directly and use it as a global one
 ```@variable = value; 
-@bg = #fff;```
+@bg = #fff;
 
 ```$body .body{
 bg-color = @bg;
