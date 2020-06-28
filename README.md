@@ -41,11 +41,11 @@ $body .body{
 
 Statements in Feazy are so easy to write and clean to read.
 
-**$** used to define tagname
-**.** used to define classname
-**content** is an attribute used to set content to the tag
-**:** is an operator used between the attribut and value to notice that is a CSS attribut
-**=** is an operator used between the attribut and value to notice that is a CSS attribut
+**$** used to define tagname<br/>
+**.** used to define classname<br/>
+**content** is an attribute used to set content to the tag<br/>
+**:** is an operator used between the attribut and value to notice that is a CSS attribut<br/>
+**=** is an operator used between the attribut and value to notice that is a HTML attribut<br/>
 
 
 Feazy:
@@ -54,11 +54,11 @@ $body .body{
   background: #FFF;
   $h1 {
     content= "Hello, World!";
-  }
-}
+  };
+};
 ```
 
-HTML:
+Transpiled to:
 ```html
 <body class="body">
   <h1>
@@ -67,7 +67,6 @@ HTML:
 </body>
 ```
 
-CSS:
 ```css
 .body {
 background: #FFF;
