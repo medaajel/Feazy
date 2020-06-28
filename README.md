@@ -7,9 +7,7 @@ The main goal of this project is to build a high-level language that makes front
 
 
 ### Used technologies
-NodeJS, Nearley, JSON
-
-Libraries: CommanderJS, InquirerJS
+NodeJS, Nearley, JSON<br/>Libraries: CommanderJS, InquirerJS
 
 
 ### Copyrights
@@ -41,11 +39,11 @@ $body .body{
 
 Statements in Feazy are so easy to write and clean to read.
 
-**$** used to define tagname<br/>
-**.** used to define classname<br/>
-**content** is an attribute used to set content to the tag<br/>
-**:** is an operator used between the attribut and value to notice that is a CSS attribut<br/>
-**=** is an operator used between the attribut and value to notice that is a HTML attribut<br/>
+**$body**: tagname<br/>
+**.body**: classname<br/>
+**content**: attribut used to set content<br/>
+**attr:value**: operator used between the attribut and value to notice that is a CSS attribut<br/>
+**attr=value**: operator used between the attribut and value to notice that is a HTML attribut<br/>
 
 
 Feazy:
