@@ -15,4 +15,10 @@ Produced and developed by Mouhammed Ajel & Sarah Ben Yahia as a graduation proje
 Feazy language has their own context-free grammar combined with many production roles that define its syntax and parsing method using nested object written with JSON.
 
 ### Variables
-``` console.log("yfz"); ```
+With Feazy, you havn't to declare variable with specific type and use it then! All you need to do is assign to variable directly and use it as a global one
+```@variable = value; 
+@bg = #fff;```
+
+```$body .body{
+bg-color = @bg;
+};```
