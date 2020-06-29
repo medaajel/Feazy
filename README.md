@@ -11,12 +11,8 @@ NOTES:
 - **Feazy is a case sensitive language**
 
 
-### Used technologies
-NodeJS, Nearley, JSON<br/>Libraries: CommanderJS, InquirerJS
-
-
-### Copyrights
-Produced and developed by Mouhammed Ajel & Sarah Ben Yahia as a graduation project, framed by Mr. Riadh Hadj Mtir
+### Used technologies & libraries
+NodeJS, Nearley, JSON, CommanderJS, InquirerJS
 
 
 ## Documentation
@@ -178,3 +174,11 @@ As any another language, comments are importants to remember your code or to exp
 ```
 \\ This is a comment
 ```
+
+
+## Copyrights
+Produced and developed by Mouhammed Ajel & Sarah Ben Yahia as a graduation project, framed by Mr. Riadh Hadj Mtir
+<br/>
+[Feazy website](http://feazy.medajel.com/) 
+[Mouhammed Ajel - LinkedIn](https://www.linkedin.com/in/medaajel) 
+[Sarah Ben Yahia - LinkedIn](https://www.linkedin.com/in/ben-yahia-sarah-a2025b16a/) 
