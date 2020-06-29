@@ -177,8 +177,5 @@ As any another language, comments are importants to remember your code or to exp
 
 
 ## Copyrights
-Produced and developed by Mouhammed Ajel & Sarah Ben Yahia as a graduation project, framed by Mr. Riadh Hadj Mtir
-<br/>
-[Feazy website](http://feazy.medajel.com/) 
-[Mouhammed Ajel - LinkedIn](https://www.linkedin.com/in/medaajel) 
-[Sarah Ben Yahia - LinkedIn](https://www.linkedin.com/in/ben-yahia-sarah-a2025b16a/) 
+© [**Feazy**](http://feazy.medajel.com/) <br/>Produced and developed by [**Mouhammed Ajel**](https://www.linkedin.com/in/medaajel)  & [**Sarah Ben Yahia**](https://www.linkedin.com/in/ben-yahia-sarah-a2025b16a/) as a graduation project, framed by **Mr. Riadh Hadj Mtir**
+
