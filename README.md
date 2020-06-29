@@ -29,14 +29,6 @@ With Feazy, you havn't to declare variable with specific type and use it then! A
 @c = @b + @a;
 ```
 
-Feazy support probably all known variable types, such as:<br\>
-- Integer
-- Float
-- String
-- Boolean
-- Character
-- **Color hex**
-
 ```
 @bg = #FFF;
 $body .body{
@@ -44,16 +36,34 @@ $body .body{
 };
 ```
 
+Feazy supports probably all known variable types, such as:
+- Integer
+- Float
+- String
+- Boolean
+- Character
+- **Color hex**
+
 #### Operators & mathematical expressions
 For easy front-end development, avoid CSS margin and padding problems you can save your values with variables.
-Also, you can use operators
+Also, you can use operators and expressions!
+
+```
+@a = 1 + 1;
+@b = 4 - @a;
+@c = 2 / @b;
+@d = @b * @c;
+@e = sin(@d) + cos(@a);
+@f = @e * pi;
+```
+
 
 #### Statements
 
 Statements in Feazy are so easy to write and clean to read.
 
 **$body**: tagname<br/>
-**.body**: classname<br/>
+**.body**: classname *(optional)*<br/>
 **content**: attribut used to set content<br/>
 **attr:value**: operator used between the attribut and value to notice that is a CSS attribut<br/>
 **attr=value**: operator used between the attribut and value to notice that is a HTML attribut<br/>
@@ -160,3 +170,8 @@ alert("Hello again");
 #JS
 ```
 
+#### Comments
+As any another language, comments are importants to remember your code or to explain it to anyone else
+```
+\\ This is a comment
+```
