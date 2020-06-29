@@ -29,6 +29,14 @@ With Feazy, you havn't to declare variable with specific type and use it then! A
 @c = @b + @a;
 ```
 
+Feazy support probably all known variable types, such as:<br\>
+- Integer
+- Float
+- String
+- Boolean
+- Character
+- **Color hex**
+
 ```
 @bg = #FFF;
 $body .body{
@@ -36,6 +44,9 @@ $body .body{
 };
 ```
 
+#### Operators & mathematical expressions
+For easy front-end development, avoid CSS margin and padding problems you can save your values with variables.
+Also, you can use operators
 
 #### Statements
 
@@ -120,14 +131,14 @@ strings.fz
 To make developer feel free and adapt with Feazy this feature is the best.
 <br/>
 HTML
-```html
+```
 #HTML
 <p>Hello again</p>
 #HTML
 ```
 
 CSS
-```css
+```
 #CSS
 .p {
   color: #FFF;
@@ -136,14 +147,14 @@ CSS
 ```
 
 PHP
-```php
+```
 #PHP
 echo("Hello again");
 #PHP
 ```
 
 JavaScript
-```javascript
+```
 #JS
 alert("Hello again");
 #JS
