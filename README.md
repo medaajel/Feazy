@@ -1,6 +1,4 @@
-# Feazy v0.1
-**CLI source-to-source compiler / Context-free language**
-
+[Feazy logo](http://feazy.medajel.com/logo.png)
 
 ## Description
 The main goal of this project is to build a high-level language that makes front-end development more interactive and easiest. This mission consists of producing a context-free grammar on a simple way to get an effortless syntax to learn and code, and implementing the necessary concepts to make an uncomplicated language, with keeping the process of transpilation speedy. 
@@ -177,4 +175,4 @@ As any another language, comments are importants to remember your code or to exp
 
 
 ## Copyrights
-© [**Feazy**](http://feazy.medajel.com/) <br/>Produced and developed by [**Mouhammed Ajel**](https://www.linkedin.com/in/medaajel)  & [**Sarah Ben Yahia**](https://www.linkedin.com/in/ben-yahia-sarah-a2025b16a/) as a graduation project, framed by **Mr. Riadh Hadj Mtir**
+© [**Feazy**](http://feazy.medajel.com/) <br/>Produced and developed by [**Mouhammed Ajel**](https://www.linkedin.com/in/medaajel)  & [**Sarah Ben Yahia**](https://www.linkedin.com/in/ben-yahia-sarah-a2025b16a/) as a graduation project. <br/>Framed by **Mr. Riadh Hadj Mtir**
