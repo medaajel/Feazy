@@ -90,8 +90,9 @@ $body .body{
   @include("heading.fz");
 };
 ```
-<br/>
+
 Means:
+
 ```
 $body .body{
   $h1 {
