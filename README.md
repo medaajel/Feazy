@@ -109,6 +109,7 @@ Using is a feature that gives the opportunity to developer to declare all global
 ```
 <br/>
 strings.fz
+
 ```
 @name= "Feazy";
 @description= "Context-free language";
@@ -119,17 +120,32 @@ strings.fz
 To make developer feel free and adapt with Feazy this feature is the best.
 <br/>
 HTML
-```
+```html
 #HTML
 <p>Hello again</p>
 #HTML
 ```
 
 CSS
-```
+```css
 #CSS
 .p {
   color: #FFF;
 }
 #CSS
 ```
+
+PHP
+```php
+#PHP
+echo("Hello again");
+#PHP
+```
+
+JavaScript
+```javascript
+#JS
+alert("Hello again");
+#JS
+```
+
