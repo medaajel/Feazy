@@ -97,6 +97,9 @@ function generate(ast,feazy_project, feazy_file_css){
                 code_css = code_css + generate(ast.sub_tags[i])[1]
             }   
         }
+        if (css_att == ""){
+            result[1] = code_css
+        }
         if (css_att != ""){
         
         result[1] = "." + String(ast.class) + " {\n" + css_att + "\n}\n\n" + code_css + "\n"

@@ -1,7 +1,7 @@
 const line_reader = require('line-reader');
 var file_system = require('fs');
 var promise = require('bluebird')
-
+var colors = require("colors")
 
 // FUNCTION TNADHEF LFICHIER .FZ O YAATINA ANALYSED FILE .FZA
 var optimize = async function optimize(feazy_file, feazy_project){
@@ -97,7 +97,7 @@ var eachLine = promise.promisify(line_reader.eachLine)
         }
         if (line != ""){
             line = line.replace(/\s\s+/g, ' ');
-            file_system.appendFileSync(file, line)
+            file_system.appendFileSync(file, line + " ")
         }
     }else{
         file_system.appendFileSync(file, line + "\n")
@@ -110,6 +110,7 @@ var eachLine = promise.promisify(line_reader.eachLine)
     if (ext_code == 2){ext_code = 0}
     // HEDHI BSH TAKTEK HKEYET LES VARIABLES O TBADELHOM O TAATINA .FZV
 }).then( function(){ 
+    console.log(feazy_file.bold.green + " | Analysed, .fza created.".yellow)
     var variables = {}
     var feazy_file_var = feazy_file + "v"
     var verify_use = 1
@@ -127,17 +128,25 @@ var eachLine = promise.promisify(line_reader.eachLine)
     file_system.writeFile(feazy_file_var,"",function(){})
     var eachLine = promise.promisify(line_reader.eachLine)
     eachLine(feazy_file + "a", function(line) {
-        if((line[0] == "@" || line.indexOf("new") == 0) && line.indexOf("include") == -1 &&  line.indexOf("use") == -1){
-                variables[line.match(/@[a-zA-Z0-9_]+/g)] = line.substr(line.indexOf("=")+1, (line.length - line.indexOf("=")) - 2).replace(/\s\s+/g,'')
+        if((line[0] == "@") && line.indexOf("include") == -1 &&  line.indexOf("use") == -1){
+                variables[line.substr(0, line.indexOf("=")-1)] = line.substr(line.indexOf("=")+1, (line.length - line.indexOf("=")) - 2).replace(/\s\s+/g,'')
         }else{
         for (var key in variables){
             var replace = new RegExp(key, 'g');
+            while(variables[key].toString().indexOf("@") != -1){
+                if(variables[variables[key].match(/@[a-zA-Z0-9_]+/g)[0]] != undefined ){
+                    variables[key] = variables[key].replace(variables[key].match(/@[a-zA-Z0-9_]+/g)[0], variables[variables[key].match(/@[a-zA-Z0-9_]+/g)[0]])
+                }
+            }
+            variables[key] = eval(variables[key])
             line = line.replace(replace,variables[key])
         }
         file_system.appendFileSync(feazy_file_var, line + "\n")
         }
 
     })
+    console.log( feazy_file.bold.green + " | Variables handled, .fzv created.".yellow)
+
 })
 return new Promise(resolve => {
     setTimeout(() => {

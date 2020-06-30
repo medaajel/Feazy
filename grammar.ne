@@ -13,7 +13,6 @@ program
     | statement {% id %}
     | include {% id %}
     | use {% id %}
-    | expression {% id %}
     | comment {% id %}
     | js_and_php {% id %}
 
