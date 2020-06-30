@@ -1,6 +1,4 @@
 
-@include "./tagname.ne"
-
 statement -> "$" tagname __ class _ "{" _ instructions:* _ statement:* _ "}" _ ";" _
             {%
             d => {
@@ -51,3 +49,6 @@ value_with_unity -> identifier _  ("px"|"rem"|"pt"|"%") {% d => d[0] + d[2]%}
                 | string {% id %}
                 | expression  _ ("px"|"rem"|"pt"|"%") {% d => d[0] + d[2] %}
                 | "#" [0-9A-Fa-f]:+ {% d => d[0] + d[1].join("") %}
+                | [0-9]:+ {% d => d[0].join("") %}
+
+tagname -> [a-zA-Z0-9_-]:+ {% d => d[0].join("") %}
