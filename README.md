@@ -1,4 +1,4 @@
-![Feazy logo](http://feazy.medajel.com/logo.png)
+![Feazy logo](https://github.com/medaajel/Feazy/raw/master/logo.png)
 
 ## Description
 The main goal of this project is to build a high-level language that makes front-end development more interactive and easiest. This mission consists of producing a context-free grammar on a simple way to get an effortless syntax to learn and code, and implementing the necessary concepts to make an uncomplicated language, with keeping the process of transpilation speedy. 
