@@ -12,6 +12,15 @@ NOTES:
 ### Used technologies & libraries
 NodeJS, Nearley, JSON, CommanderJS, InquirerJS
 
+## How it works?
+Feazy transpiler is a CLI application developed simply to use it easily.
+Feazy has three commands you can call:
+- Create (alias: c)
+- Transpile (alias: t)
+- Detect (alias: d)
+<br/>
+Every command has its own functionality and options.
+<br/>
 
 ## Documentation
 Feazy language has their own context-free grammar combined with many production roles that define its syntax and parsing method using nested object written with JSON.
