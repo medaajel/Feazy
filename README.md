@@ -24,15 +24,50 @@ Every command has its own functionality and options.
 
 ### Create
 This command is used to create new Feazy project and initialize environement.
+<br/>
 **Syntax: "Feazy create" or "Feazy c"**
-![First capture - create](https://raw.githubusercontent.com/medaajel/Feazy/master/screenshots/capture-create.PNG)
-![Second capture - create](https://raw.githubusercontent.com/medaajel/Feazy/master/screenshots/capture-create-1.PNG)
-![Third capture - create](https://raw.githubusercontent.com/medaajel/Feazy/master/screenshots/capture-create-2.PNG)
-![Fourth capture - create](https://raw.githubusercontent.com/medaajel/Feazy/master/screenshots/capture-create-3.PNG)
-![Fifth capture - create](https://raw.githubusercontent.com/medaajel/Feazy/master/screenshots/capture-create-4.PNG)
-![Sixth capture - create](https://raw.githubusercontent.com/medaajel/Feazy/master/screenshots/capture-create-5.PNG)
+Feazy use inquirerJS to make interactive Q&A like:
+![First capture - create](https://raw.githubusercontent.com/medaajel/Feazy/master/screenshots/capture-create-1.PNG)
+<br/>
+![Second capture - create](https://raw.githubusercontent.com/medaajel/Feazy/master/screenshots/capture-create-2.PNG)
+<br/>
+This files that will be initialized automatically in your project folder:
+![Third capture - create](https://raw.githubusercontent.com/medaajel/Feazy/master/screenshots/capture-create-3.PNG)
+<br/>
+This is initialized homepage:
+![Fourth capture - create](https://raw.githubusercontent.com/medaajel/Feazy/master/screenshots/capture-create-4.PNG)
+<br/>
+This file where you can define globale variables to use many times:
+![Fifth capture - create](https://raw.githubusercontent.com/medaajel/Feazy/master/screenshots/capture-create-5.PNG)
+<br/>
 
+### Transpile
+This command is used to transpile Feazy project to HTML & CSS project.
+<br/>
+__**Syntax: "Feazy transpile [options]" or "Feazy t [options]"**__
+<br/>
+Options:
+- Project location ("--in project_dir" or "-i project_dir")
+- Live transpilation ("--live interval" or "-l interval") __(Interval per minute)__
 
+__**Example: "Feazy t -i project_dir -l 5"**__
+<br/>
+![First capture - transpile](https://raw.githubusercontent.com/medaajel/Feazy/master/screenshots/capture-transpile.PNG)
+<br/>
+### Detect
+This command is used to detect Feazy code errors.
+<br/>
+__**Syntax: "Feazy detect [options]" or "Feazy d [options]"**__
+<br/>
+Options:
+- Project location ("--in project_dir" or "-i project_dir")
+
+__**Example: "Feazy d -i project_dir"**__
+<br/>
+![First capture - detect](https://raw.githubusercontent.com/medaajel/Feazy/master/screenshots/capture-detect-no-errors.PNG)
+<br/>
+![Second capture - detect](https://raw.githubusercontent.com/medaajel/Feazy/master/screenshots/capture-detect-error.PNG)
+<br/>
 ## Documentation
 Feazy language has their own context-free grammar combined with many production roles that define its syntax and parsing method using nested object written with JSON.
 
