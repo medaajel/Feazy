@@ -22,6 +22,17 @@ Feazy has three commands you can call:
 Every command has its own functionality and options.
 <br/>
 
+### Create
+This command is used to create new Feazy project and initialize environement.
+**Syntax: "Feazy create" or "Feazy c"**
+![First capture - create](https://raw.githubusercontent.com/medaajel/Feazy/master/screenshots/capture-create.PNG)
+![Second capture - create](https://raw.githubusercontent.com/medaajel/Feazy/master/screenshots/capture-create-1.PNG)
+![Third capture - create](https://raw.githubusercontent.com/medaajel/Feazy/master/screenshots/capture-create-2.PNG)
+![Fourth capture - create](https://raw.githubusercontent.com/medaajel/Feazy/master/screenshots/capture-create-3.PNG)
+![Fifth capture - create](https://raw.githubusercontent.com/medaajel/Feazy/master/screenshots/capture-create-4.PNG)
+![Sixth capture - create](https://raw.githubusercontent.com/medaajel/Feazy/master/screenshots/capture-create-5.PNG)
+
+
 ## Documentation
 Feazy language has their own context-free grammar combined with many production roles that define its syntax and parsing method using nested object written with JSON.
 
